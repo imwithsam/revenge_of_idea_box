@@ -23,6 +23,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma as the app server
 gem 'puma'
 
+# Enable respond_to and respond_with for JSON
+gem 'responders'
+
 group :production do
   # Enable better Production logging
   gem 'rails_12factor'

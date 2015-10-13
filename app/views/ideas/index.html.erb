@@ -22,7 +22,7 @@
   <% @ideas.each do |idea| %>
     <tr>
       <td><%= idea.title %></td>
-      <td><%= idea.body %></td>
+      <td><%= truncate(idea.body, length: 100, separator: " ") %></td>
       <td><%= idea.quality %></td>
       <td><%= link_to "Like", "#" %></td>
       <td><%= link_to "Dislike", "#" %></td>

@@ -1,4 +1,5 @@
 function renderIdeas(payload) {
+
   var compiled = _.template(
     '<tr>' +
       '<td><%= title %></td>' +

@@ -1,5 +1,22 @@
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Quality</th>
+    <th>Like</th>
+    <th>Dislike</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
 <% @ideas.each do |idea| %>
-  <h1><%= idea.title %></h1>
-  <p><%= idea.body %></p>
-  <p><%= idea.quality %></p>
+  <tr>
+    <td><%= idea.title %></td>
+    <td><%= idea.body %></td>
+    <td><%= idea.quality %></td>
+  </tr>
 <% end %>
+  </tbody>
+</table>

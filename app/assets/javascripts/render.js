@@ -1,6 +1,11 @@
 function renderIdeas(payload) {
   var compiled = _.template(
-    '<h1><%= title %></h1><p><%= body %></p><p><%= quality %></p>'
+    '<tr>' +
+      '<td><%= title %></td>' +
+      '<td><%= body %></td>' +
+      '<td><%= quality %></td>' +
+    '</tr>'
   );
+
   return compiled(payload);
 };

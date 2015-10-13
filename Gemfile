@@ -38,6 +38,8 @@ group :development, :test do
   gem 'byebug'
   # RSpec testing framework for Rails
   gem 'rspec-rails'
+  # Use Capybara for feature testing
+  gem 'capybara'
   # Test runner for Jasmine JS testing framework
   gem 'teaspoon-jasmine'
 end

@@ -19,6 +19,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# Add Lo-Dash JS library to asset pipeline
+gem 'lodash-rails'
 
 # Use Puma as the app server
 gem 'puma'
@@ -36,6 +38,8 @@ group :development, :test do
   gem 'byebug'
   # RSpec testing framework for Rails
   gem 'rspec-rails'
+  # Test runner for Jasmine JS testing framework
+  gem 'teaspoon-jasmine'
 end
 
 group :development do

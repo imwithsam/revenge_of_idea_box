@@ -18,6 +18,7 @@ describe "Ideas API" do
     json.each_with_index do |idea, i|
       expect(idea["title"]).to eq("Title #{i+1}")
       expect(idea["body"]).to eq("Body #{i+1}")
+      expect(idea["quality"]).to eq("swill")
     end
   end
 end

@@ -15,6 +15,12 @@ class Api::V1::IdeasController < ApplicationController
     end
   end
 
+  def destroy
+    Idea.destroy(params[:id])
+
+    render nothing: true
+  end
+
   private
 
   def idea_params

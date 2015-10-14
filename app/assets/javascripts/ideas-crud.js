@@ -9,7 +9,7 @@ function createIdea() {
 
     $.ajax({
       type: 'POST',
-      url:  '/api/v1/ideas',
+      url:  '/api/v1/ideas/',
       data: postParams,
       success: function(idea) {
         renderIdea(idea);
@@ -20,7 +20,7 @@ function createIdea() {
 
 function renderIdea(idea) {
   $('#ideas-all').prepend(
-    '<tr>'
+    '<tr class="idea" data-id="' + idea.id + '">'
     + '<td>'
     + idea.title
     + '</td>'
@@ -40,12 +40,33 @@ function renderIdea(idea) {
     + '<a href="#">Edit</a>'
     + '</td>'
     + '<td>'
-    + '<a href="#">Delete</a>'
+    + '<a href="#" class="idea-delete">Delete</a>'
     + '</td>'
     + '</tr>'
   );
 };
 
+function deleteIdea() {
+  // Must use delegate because delete button may not exist yet.
+  $('#ideas-all').delegate('.idea-delete', 'click', function() {
+    var $idea = $(this).closest('.idea');
+
+    $.ajax({
+      type: 'DELETE',
+      url: '/api/v1/ideas/'
+           + $idea.attr('data-id'),
+      success: function() {
+        $idea.remove();
+      },
+      error: function() {
+        // Assume idea was already removed by another request
+        $idea.remove();
+      }
+    });
+  });
+};
+
 $(document).ready(function() {
   createIdea();
+  deleteIdea();
 });

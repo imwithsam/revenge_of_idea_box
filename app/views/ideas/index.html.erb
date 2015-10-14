@@ -18,14 +18,14 @@
   </thead>
   <tbody id="ideas-all">
   <% @ideas.each do |idea| %>
-    <tr>
+    <tr class="idea" data-id="<%= idea.id %>">
       <td><%= idea.title %></td>
       <td><%= truncate(idea.body, length: 100, separator: " ") %></td>
       <td><%= idea.quality %></td>
       <td><%= link_to "Like", "#" %></td>
       <td><%= link_to "Dislike", "#" %></td>
       <td><%= link_to "Edit", "#" %></td>
-      <td><%= link_to "Delete", "#" %></td>
+      <td><%= link_to "Delete", "#", class: "idea-delete" %></td>
     </tr>
   <% end %>
   </tbody>

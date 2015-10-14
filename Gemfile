@@ -41,6 +41,7 @@ group :development, :test do
   # Use Capybara for feature testing
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'launchy'
   # Test runner for Jasmine JS testing framework
   gem 'teaspoon-jasmine'
 end

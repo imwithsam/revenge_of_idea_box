@@ -1,10 +1,8 @@
-<%= form_tag do %>
 <%= label_tag :title %>
-<%= text_field_tag :title %>
+<%= text_field_tag :title, nil, id: "idea-title" %>
 <%= label_tag :body %>
-<%= text_field_tag :body %>
-<%= link_to "Save", "#" %>
-<% end %>
+<%= text_field_tag :body, nil, id: "idea-body" %>
+<%= button_tag "Save", id: "idea-save" %>
 
 <table>
   <thead>
@@ -18,7 +16,7 @@
     <th>&nbsp;</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody id="ideas-all">
   <% @ideas.each do |idea| %>
     <tr>
       <td><%= idea.title %></td>

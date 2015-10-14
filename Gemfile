@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   # Use Capybara for feature testing
   gem 'capybara'
+  gem 'capybara-webkit'
   # Test runner for Jasmine JS testing framework
   gem 'teaspoon-jasmine'
 end

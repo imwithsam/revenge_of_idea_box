@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "Ideas rendering", type: :feature do
-  scenario "User visits the root path" do
+  scenario "User visits the root path", js: true do
     Idea.create(title: "Title 1",
                 body:  "Body 1")
 

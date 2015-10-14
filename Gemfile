@@ -42,6 +42,7 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'launchy'
+  gem 'database_cleaner'
   # Test runner for Jasmine JS testing framework
   gem 'teaspoon-jasmine'
 end

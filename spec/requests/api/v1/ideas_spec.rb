@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Ideas API" do
-  it "returns all ideas" do
+  it "returns all ideas with last created first" do
     2.times do |i|
       Idea.create(
         title: "Title #{i+1}",
@@ -15,10 +15,11 @@ describe "Ideas API" do
 
     expect(response).to be_success
 
-    json.each_with_index do |idea, i|
-      expect(idea["title"]).to eq("Title #{i+1}")
-      expect(idea["body"]).to eq("Body #{i+1}")
-      expect(idea["quality"]).to eq("swill")
-    end
+    expect(json[0]["title"]).to eq("Title 2")
+    expect(json[0]["body"]).to eq("Body 2")
+    expect(json[0]["quality"]).to eq("swill")
+    expect(json[1]["title"]).to eq("Title 1")
+    expect(json[1]["body"]).to eq("Body 1")
+    expect(json[1]["quality"]).to eq("swill")
   end
 end

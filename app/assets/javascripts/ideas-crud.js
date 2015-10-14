@@ -27,11 +27,11 @@ function renderIdea(idea) {
     + '<td>'
     + idea.body
     + '</td>'
-    + '<td>'
+    + '<td class="idea-quality">'
     + idea.quality
     + '</td>'
     + '<td>'
-    + '<a href="#">Like</a>'
+    + '<a href="#" class="idea-like">Like</a>'
     + '</td>'
     + '<td>'
     + '<a href="#">Dislike</a>'
@@ -66,7 +66,35 @@ function deleteIdea() {
   });
 };
 
+function likeIdea() {
+  // Must use delegate because like button may not exist yet.
+  $('#ideas-all').delegate('.idea-like', 'click', function() {
+    var $idea = $(this).closest('.idea');
+    var patchParams = {
+      _method: 'PATCH',
+      idea: {
+        quality: 'plausible'
+      }
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/v1/ideas/'
+           + $idea.attr('data-id'),
+      data: patchParams,
+      success: function(idea) {
+        rerenderQuality.call($idea, idea);
+      }
+    });
+  });
+};
+
+function rerenderQuality(idea) {
+  $(this).children('.idea-quality').html(idea.quality);
+};
+
 $(document).ready(function() {
   createIdea();
   deleteIdea();
+  likeIdea();
 });

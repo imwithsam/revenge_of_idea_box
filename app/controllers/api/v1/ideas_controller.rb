@@ -16,14 +16,24 @@ class Api::V1::IdeasController < ApplicationController
   end
 
   def destroy
-    Idea.destroy(params[:id])
+    @idea = Idea.destroy(params[:id])
 
-    render nothing: true
+    render json: @idea
+  end
+
+  def update
+    @idea = Idea.find(params[:id])
+
+    if @idea.update_attributes(idea_params)
+      render json: @idea
+    else
+      render json: @idea.errors.full_messages
+    end
   end
 
   private
 
   def idea_params
-    params.require(:idea).permit(:title, :body)
+    params.require(:idea).permit(:title, :body, :quality)
   end
 end

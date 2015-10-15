@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Idea filtering", type: :feature do
+RSpec.feature "Idea searching", type: :feature do
   before do
     visit root_path
 
@@ -15,7 +15,7 @@ RSpec.feature "Idea filtering", type: :feature do
     click_button("Save")
   end
 
-  scenario "User enters filter term in search box that matches two titles",
+  xscenario "User enters search term that matches two titles",
            js: true do
     fill_in("search", with: "one")
     wait_for_ajax

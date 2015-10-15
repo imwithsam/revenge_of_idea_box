@@ -1,10 +1,29 @@
-<%= label_tag :search %>
-<%= text_field_tag :search, nil, id: "idea-search" %>
-<%= label_tag :title %>
-<%= text_field_tag :title, nil, id: "idea-title" %>
-<%= label_tag :body %>
-<%= text_field_tag :body, nil, id: "idea-body" %>
-<%= button_tag "Save", id: "idea-save" %>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+  <label class="mdl-button mdl-js-button mdl-button--icon" for="idea-search">
+    <i class="material-icons">search</i>
+  </label>
+  <div class="mdl-textfield__expandable-holder">
+    <%= label_tag :search, nil, class: "mdl-textfield__label" %>
+    <%= text_field_tag :search,
+      nil, id: "idea-search", class: "mdl-textfield__input" %>
+  </div>
+</div>
+<br>
+</div>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <%= label_tag :title, nil, class: "mdl-textfield__label" %>
+  <%= text_field_tag :title,
+    nil, id: "idea-title", class: "mdl-textfield__input" %>
+</div>
+<br>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <%= label_tag :body, nil, class: "mdl-textfield__label" %>
+  <%= text_area_tag :body, nil, id: "idea-body", class: "mdl-textfield__input" %>
+</div>
+<br>
+<%= button_tag "Save",
+  id: "idea-save", class: "mdl-button mdl-js-button mdl-button--primary" %>
+<br><br>
 
 <table>
   <thead>

@@ -28,26 +28,26 @@ function createIdea() {
 function renderIdea(idea) {
   $('#ideas-all').prepend(
     '<tr class="idea" data-id="' + idea.id + '">'
-    + '<td class="searchable">'
+    + '<td class="searchable mdl-data-table__cell--non-numeric">'
     + idea.title
     + '</td>'
-    + '<td class="searchable">'
+    + '<td class="searchable mdl-data-table__cell--non-numeric">'
     + idea.body
     + '</td>'
-    + '<td class="idea-quality">'
+    + '<td class="idea-quality mdl-data-table__cell--non-numeric">'
     + idea.quality
     + '</td>'
     + '<td>'
-    + '<a href="#" class="idea-like">Like</a>'
+    + '<a href="#" class="idea-like mdl-button mdl-js-button mdl-button--primary">Like</a>'
     + '</td>'
     + '<td>'
-    + '<a href="#" class="idea-dislike">Dislike</a>'
+    + '<a href="#" class="idea-dislike mdl-button mdl-js-button mdl-button--primary">Dislike</a>'
     + '</td>'
     + '<td>'
-    + '<a href="/ideas/' + idea.id + '/edit">Edit</a>'
+    + '<a href="/ideas/' + idea.id + '/edit" class="mdl-button mdl-js-button mdl-button--primary">Edit</a>'
     + '</td>'
     + '<td>'
-    + '<a href="#" class="idea-delete">Delete</a>'
+    + '<a href="#" class="idea-delete mdl-button mdl-js-button mdl-button--accent">Delete</a>'
     + '</td>'
     + '</tr>'
   );

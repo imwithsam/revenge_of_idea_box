@@ -1,35 +1,53 @@
-<%= label_tag :search %>
-<%= text_field_tag :search, nil, id: "idea-search" %>
-<%= label_tag :title %>
-<%= text_field_tag :title, nil, id: "idea-title" %>
-<%= label_tag :body %>
-<%= text_field_tag :body, nil, id: "idea-body" %>
-<%= button_tag "Save", id: "idea-save" %>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+  <label class="mdl-button mdl-js-button mdl-button--icon" for="idea-search">
+    <i class="material-icons">search</i>
+  </label>
+  <div class="mdl-textfield__expandable-holder">
+    <%= label_tag :search, nil, class: "mdl-textfield__label" %>
+    <%= text_field_tag :search,
+      nil, id: "idea-search", class: "mdl-textfield__input" %>
+  </div>
+</div>
+<br>
+</div>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <%= label_tag :title, nil, class: "mdl-textfield__label" %>
+  <%= text_field_tag :title,
+    nil, id: "idea-title", class: "mdl-textfield__input" %>
+</div>
+<br>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <%= label_tag :body, nil, class: "mdl-textfield__label" %>
+  <%= text_area_tag :body, nil, id: "idea-body", class: "mdl-textfield__input" %>
+</div>
+<%= button_tag "Save",
+  id: "idea-save", class: "mdl-button mdl-js-button mdl-button--accent" %>
+<br><br>
 
-<table>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
   <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Quality</th>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
+    <th class="mdl-data-table__cell--non-numeric">Title</th>
+    <th class="mdl-data-table__cell--non-numeric">Body</th>
+    <th class="mdl-data-table__cell--non-numeric">Quality</th>
+    <th class="mdl-data-table__cell--non-numeric">&nbsp;</th>
+    <th class="mdl-data-table__cell--non-numeric">&nbsp;</th>
+    <th class="mdl-data-table__cell--non-numeric">&nbsp;</th>
+    <th class="mdl-data-table__cell--non-numeric">&nbsp;</th>
   </tr>
   </thead>
   <tbody id="ideas-all">
   <% @ideas.each do |idea| %>
     <tr class="idea" data-id="<%= idea.id %>">
-      <td class="searchable"><%= idea.title %></td>
-      <td class="searchable">
+      <td class="searchable mdl-data-table__cell--non-numeric"><%= idea.title %></td>
+      <td class="searchable mdl-data-table__cell--non-numeric">
         <%= truncate(idea.body, length: 100, separator: " ") %>
       </td>
-      <td class="idea-quality"><%= idea.quality %></td>
-      <td><%= link_to "Like", "#", class: "idea-like" %></td>
-      <td><%= link_to "Dislike", "#", class: "idea-dislike" %></td>
-      <td><%= link_to "Edit", edit_idea_path(idea.id) %>
-      <td><%= link_to "Delete", "#", class: "idea-delete" %></td>
+      <td class="idea-quality mdl-data-table__cell--non-numeric"><%= idea.quality %></td>
+      <td><%= link_to "Like", "#", class: "idea-like mdl-button mdl-js-button mdl-button--primary" %></td>
+      <td><%= link_to "Dislike", "#", class: "idea-dislike mdl-button mdl-js-button mdl-button--primary" %></td>
+      <td><%= link_to "Edit", edit_idea_path(idea.id), class: "mdl-button mdl-js-button mdl-button--primary" %>
+      <td><%= link_to "Delete", "#", class: "idea-delete mdl-button mdl-js-button mdl-button--accent" %></td>
     </tr>
   <% end %>
   </tbody>

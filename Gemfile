@@ -28,6 +28,10 @@ gem 'puma'
 # Enable respond_to and respond_with for JSON
 gem 'responders'
 
+# Add Material Design Lite library
+gem 'material_icons'
+gem 'material_design_lite-rails'
+
 group :production do
   # Enable better Production logging
   gem 'rails_12factor'

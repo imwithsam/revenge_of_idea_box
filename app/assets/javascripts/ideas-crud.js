@@ -1,3 +1,9 @@
+$(document).ready(function() {
+  createIdea();
+  deleteIdea();
+  likeIdea();
+});
+
 function createIdea() {
   $('#idea-save').on('click', function() {
     var postParams = {
@@ -34,7 +40,7 @@ function renderIdea(idea) {
     + '<a href="#" class="idea-like">Like</a>'
     + '</td>'
     + '<td>'
-    + '<a href="#">Dislike</a>'
+    + '<a href="#" class="idea-dislike">Dislike</a>'
     + '</td>'
     + '<td>'
     + '<a href="#">Edit</a>'
@@ -70,10 +76,11 @@ function likeIdea() {
   // Must use delegate because like button may not exist yet.
   $('#ideas-all').delegate('.idea-like', 'click', function() {
     var $idea = $(this).closest('.idea');
+    var $quality = $idea.children('.idea-quality').html();
     var patchParams = {
       _method: 'PATCH',
       idea: {
-        quality: 'plausible'
+        quality: bumpQuality($quality, 'like')
       }
     };
 
@@ -93,8 +100,21 @@ function rerenderQuality(idea) {
   $(this).children('.idea-quality').html(idea.quality);
 };
 
-$(document).ready(function() {
-  createIdea();
-  deleteIdea();
-  likeIdea();
-});
+function bumpQuality(current, action) {
+  var quality = ['swill', 'plausible', 'genius'];
+  var index = quality.indexOf(current);
+
+  if (action === 'like') {
+    index++;
+  } else if (action === 'dislike') {
+    index--;
+  }
+
+  if (index < 0) {
+    index = 0;
+  } else if (index > 2) {
+    index = 2;
+  }
+
+  return quality[index];
+}

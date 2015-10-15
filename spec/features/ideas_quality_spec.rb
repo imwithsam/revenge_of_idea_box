@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Ideas quality", type: :feature do
+RSpec.feature "Ideas quality", type: :feature, js: true do
   before do
     visit root_path
 
@@ -11,6 +11,7 @@ RSpec.feature "Ideas quality", type: :feature do
 
   scenario "User likes an existing idea", js: true do
     click_link("Like")
+    wait_for_ajax
 
     expect(page).to_not have_content("swill")
     expect(page).to_not have_content("genius")
@@ -19,7 +20,22 @@ RSpec.feature "Ideas quality", type: :feature do
 
   scenario "User likes an existing idea twice", js: true do
     click_link("Like")
+    wait_for_ajax
     click_link("Like")
+    wait_for_ajax
+
+    expect(page).to_not have_content("swill")
+    expect(page).to_not have_content("plausible")
+    expect(page).to have_content("genius")
+  end
+
+  scenario "User likes an existing idea thrice", js: true do
+    click_link("Like")
+    wait_for_ajax
+    click_link("Like")
+    wait_for_ajax
+    click_link("Like")
+    wait_for_ajax
 
     expect(page).to_not have_content("swill")
     expect(page).to_not have_content("plausible")

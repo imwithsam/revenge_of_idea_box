@@ -9,13 +9,13 @@ RSpec.feature "Idea editing", type: :feature do
     click_button("Save")
     click_link("Edit")
 
-    fill_in("title", with: "New Title")
-    fill_in("body", with: "New Body")
+    fill_in("Title", with: "New Title")
+    fill_in("Body", with: "New Body")
     click_button("Update")
 
-    exepct(page).to_not have_content("Title 1")
+    expect(page).to_not have_content("Title 1")
     expect(page).to_not have_content("Body 1")
-    exepct(page).to have_content("New Title")
+    expect(page).to have_content("New Title")
     expect(page).to have_content("New Body")
   end
 end

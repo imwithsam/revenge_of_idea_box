@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require lodash
+//= require jquery.tablesorter
 //= require material
 //= require_tree .

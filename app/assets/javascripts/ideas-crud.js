@@ -44,7 +44,7 @@ function renderIdea(idea) {
     + '<a href="#" class="idea-dislike">Dislike</a>'
     + '</td>'
     + '<td>'
-    + '<a href="#">Edit</a>'
+    + '<a href="/ideas/' + idea.id + '/edit">Edit</a>'
     + '</td>'
     + '<td>'
     + '<a href="#" class="idea-delete">Delete</a>'

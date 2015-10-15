@@ -1,3 +1,10 @@
+$(document).ready(function() {
+  createIdea();
+  deleteIdea();
+  likeIdea();
+  dislikeIdea();
+});
+
 function createIdea() {
   $('#idea-save').on('click', function() {
     var postParams = {
@@ -27,14 +34,14 @@ function renderIdea(idea) {
     + '<td>'
     + idea.body
     + '</td>'
-    + '<td>'
+    + '<td class="idea-quality">'
     + idea.quality
     + '</td>'
     + '<td>'
-    + '<a href="#">Like</a>'
+    + '<a href="#" class="idea-like">Like</a>'
     + '</td>'
     + '<td>'
-    + '<a href="#">Dislike</a>'
+    + '<a href="#" class="idea-dislike">Dislike</a>'
     + '</td>'
     + '<td>'
     + '<a href="#">Edit</a>'
@@ -66,7 +73,73 @@ function deleteIdea() {
   });
 };
 
-$(document).ready(function() {
-  createIdea();
-  deleteIdea();
-});
+function likeIdea() {
+  // Must use delegate because like button may not exist yet.
+  $('#ideas-all').delegate('.idea-like', 'click', function() {
+    var $idea = $(this).closest('.idea');
+    var $quality = $idea.children('.idea-quality').html();
+    var patchParams = {
+      _method: 'PATCH',
+      idea: {
+        quality: bumpQuality($quality, 'like')
+      }
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/v1/ideas/'
+           + $idea.attr('data-id'),
+      data: patchParams,
+      success: function(idea) {
+        rerenderQuality.call($idea, idea);
+      }
+    });
+  });
+};
+
+function dislikeIdea() {
+  // Must use delegate because like button may not exist yet.
+  $('#ideas-all').delegate('.idea-dislike', 'click', function() {
+    var $idea = $(this).closest('.idea');
+    var $quality = $idea.children('.idea-quality').html();
+    var patchParams = {
+      _method: 'PATCH',
+      idea: {
+        quality: bumpQuality($quality, 'dislike')
+      }
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/v1/ideas/'
+           + $idea.attr('data-id'),
+      data: patchParams,
+      success: function(idea) {
+        rerenderQuality.call($idea, idea);
+      }
+    });
+  });
+};
+
+function rerenderQuality(idea) {
+  $(this).children('.idea-quality').html(idea.quality);
+};
+
+function bumpQuality(current, action) {
+  var quality = ['swill', 'plausible', 'genius'];
+  var index = quality.indexOf(current);
+
+  if (action === 'like') {
+    index++;
+  } else if (action === 'dislike') {
+    index--;
+  }
+
+  if (index < 0) {
+    index = 0;
+  } else if (index > 2) {
+    index = 2;
+  }
+
+  return quality[index];
+}

@@ -2,6 +2,7 @@ $(document).ready(function() {
   createIdea();
   deleteIdea();
   likeIdea();
+  dislikeIdea();
 });
 
 function createIdea() {
@@ -81,6 +82,30 @@ function likeIdea() {
       _method: 'PATCH',
       idea: {
         quality: bumpQuality($quality, 'like')
+      }
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/v1/ideas/'
+           + $idea.attr('data-id'),
+      data: patchParams,
+      success: function(idea) {
+        rerenderQuality.call($idea, idea);
+      }
+    });
+  });
+};
+
+function dislikeIdea() {
+  // Must use delegate because like button may not exist yet.
+  $('#ideas-all').delegate('.idea-dislike', 'click', function() {
+    var $idea = $(this).closest('.idea');
+    var $quality = $idea.children('.idea-quality').html();
+    var patchParams = {
+      _method: 'PATCH',
+      idea: {
+        quality: bumpQuality($quality, 'dislike')
       }
     };
 

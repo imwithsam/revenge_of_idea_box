@@ -1,3 +1,5 @@
+<%= label_tag :search %>
+<%= text_field_tag :search, nil, id: "idea-search" %>
 <%= label_tag :title %>
 <%= text_field_tag :title, nil, id: "idea-title" %>
 <%= label_tag :body %>
@@ -19,8 +21,10 @@
   <tbody id="ideas-all">
   <% @ideas.each do |idea| %>
     <tr class="idea" data-id="<%= idea.id %>">
-      <td><%= idea.title %></td>
-      <td><%= truncate(idea.body, length: 100, separator: " ") %></td>
+      <td class="searchable"><%= idea.title %></td>
+      <td class="searchable">
+        <%= truncate(idea.body, length: 100, separator: " ") %>
+      </td>
       <td class="idea-quality"><%= idea.quality %></td>
       <td><%= link_to "Like", "#", class: "idea-like" %></td>
       <td><%= link_to "Dislike", "#", class: "idea-dislike" %></td>

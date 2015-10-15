@@ -28,10 +28,10 @@ function createIdea() {
 function renderIdea(idea) {
   $('#ideas-all').prepend(
     '<tr class="idea" data-id="' + idea.id + '">'
-    + '<td>'
+    + '<td class="searchable">'
     + idea.title
     + '</td>'
-    + '<td>'
+    + '<td class="searchable">'
     + idea.body
     + '</td>'
     + '<td class="idea-quality">'
